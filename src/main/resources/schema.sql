@@ -1,0 +1,35 @@
+/* oppgave 1 */
+
+/* schema.sql */
+
+CREATE TABLE Vare
+(
+    VID INTEGER AUTO_INCREMENT NOT NULL,
+    Varenavn VARCHAR(50) NOT NULL,
+    Pris INTEGER NOT NULL,
+    Antall INTEGER NOT NULL,
+    PRIMARY KEY (VID)
+);
+
+/* MERK: Passord-kolonnen er ikke noe krav i løsningen */
+CREATE TABLE Kunde
+(
+    KID INTEGER AUTO_INCREMENT NOT NULL,
+    Navn VARCHAR(50) NOT NULL,
+    Mobil VARCHAR(8) NOT NULL,
+    Epost VARCHAR(50) NOT NULL,
+    Passord VARCHAR(100) NOT NULL,
+    PRIMARY KEY (KID)
+);
+
+CREATE TABLE Bestilling
+(
+    BID INTEGER AUTO_INCREMENT NOT NULL,
+    KID INTEGER NOT NULL,
+    Bord INTEGER NOT NULL,
+    Mottatt TIMESTAMP DEFAULT NOW(),
+    Varer VARCHAR(500) NOT NULL,
+    PRIMARY KEY (BID),
+    FOREIGN KEY (KID) REFERENCES Kunde(KID)
+);
+
